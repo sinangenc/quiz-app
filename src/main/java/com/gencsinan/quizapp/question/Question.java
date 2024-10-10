@@ -1,6 +1,7 @@
 package com.gencsinan.quizapp.question;
 
 import com.gencsinan.quizapp.answer.Answer;
+import com.gencsinan.quizapp.state.State;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;

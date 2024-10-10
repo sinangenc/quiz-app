@@ -8,10 +8,10 @@ The frontend part of this application is maintained in a separate repository. Yo
 
 ## API Endpoints
 
-| Method | Endpoint                | Description                                                                                                                                                          |
-|--------|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| GET    | `/admin/questions`      | Returns all quiz questions.                                                                                                                                          |
-| POST   | `/admin/questions`      | Creates a new quiz question.                                                                                                                                         |
-| GET    | `/admin/questions/{id}` | Returns a specific quiz question.                                                                                                                                    |
-| DELETE | `/admin/questions/{id}` | Deletes a specific quiz question.                                                                                                                                    |
-
+| Method | Endpoint                | Description                       |
+|--------|-------------------------|-----------------------------------|
+| GET    | `/admin/questions`      | Returns all quiz questions.       |
+| POST   | `/admin/questions`      | Creates a new quiz question.      |
+| GET    | `/admin/questions/{id}` | Returns a specific quiz question. |
+| DELETE | `/admin/questions/{id}` | Deletes a specific quiz question. |
+| GET    | `/states`               | Returns all states(Bundesländer). |
