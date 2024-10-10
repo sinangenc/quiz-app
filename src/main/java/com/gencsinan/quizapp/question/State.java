@@ -1,0 +1,20 @@
+package com.gencsinan.quizapp.question;
+
+public enum State {
+    BADEN_WUERTTEMBERG,
+    BAYERN,
+    BERLIN,
+    BRANDENBURG,
+    BREMEN,
+    HAMBURG,
+    HESSEN,
+    MECKLENBURG_VORPOMMERN,
+    NIEDERSACHSEN,
+    NORDRHEIN_WESTFALEN,
+    RHEINLAND_PFALZ,
+    SAARLAND,
+    SACHSEN,
+    SACHSEN_ANHALT,
+    SCHLESWIG_HOLSTEIN,
+    THUERINGEN
+}
