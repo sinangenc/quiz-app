@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.net.URI;
 import java.util.List;
@@ -47,6 +48,7 @@ public class QuestionControllerIntegrationTests {
     }
 
     @Test
+    @DirtiesContext
     public void shouldSaveNewQuestion() {
         Question question = new Question();
         question.setQuestionText("Wie heißt die deutsche Verfassung?");
@@ -71,6 +73,7 @@ public class QuestionControllerIntegrationTests {
     }
 
     @Test
+    @DirtiesContext
     public void shouldUpdateAnExistingQuestion(){
         Question question = new Question();
         question.setQuestionText("Deutschland ist ein Rechtsstaat. Was ist damit gemeint?");
@@ -115,6 +118,7 @@ public class QuestionControllerIntegrationTests {
     }
 
     @Test
+    @DirtiesContext
     public void shouldDeleteAnExistingQuestion() {
         ResponseEntity<Void> response = restTemplate
                 .exchange("/admin/questions/1", HttpMethod.DELETE, null, Void.class);

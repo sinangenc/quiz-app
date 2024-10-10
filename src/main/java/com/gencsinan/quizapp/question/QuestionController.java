@@ -63,10 +63,7 @@ public class QuestionController {
     public ResponseEntity<Void> updateQuestion(@PathVariable Long questionId, @RequestBody Question updatedQuestion) {
         Optional<Question> question = questionRepository.findById(questionId);
 
-        System.out.println(questionId + " " + updatedQuestion);
-
         if (question.isPresent()) {
-            System.out.println("PRESENT");
             updatedQuestion.setId(questionId);
             questionRepository.save(updatedQuestion);
             return ResponseEntity.noContent().build();
