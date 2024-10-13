@@ -5,7 +5,7 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("IMAGE_QUESTION")
+@DiscriminatorValue("Image_Question")
 public class QuestionWithImage extends Question {
     @Column(nullable = false)
     private String imagePath;
