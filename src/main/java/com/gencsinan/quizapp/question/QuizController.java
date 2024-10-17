@@ -18,13 +18,11 @@ import java.util.stream.Collectors;
 
 @RestController
 public class QuizController {
-    private final QuestionRepository questionRepository;
     private QuizRepository quizRepository;
 
     @Autowired
-    public QuizController(QuizRepository quizRepository, QuestionRepository questionRepository) {
+    public QuizController(QuizRepository quizRepository) {
         this.quizRepository = quizRepository;
-        this.questionRepository = questionRepository;
     }
 
     @GetMapping("/test/{state}")
