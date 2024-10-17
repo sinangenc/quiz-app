@@ -1,6 +1,8 @@
 package com.gencsinan.quizapp.question;
 
 import com.gencsinan.quizapp.answer.Answer;
+import com.gencsinan.quizapp.dtos.practice.response.AnswerPractice;
+import com.gencsinan.quizapp.dtos.practice.response.QuestionPractice;
 import com.gencsinan.quizapp.dtos.testcheck.request.QuestionAnswer;
 import com.gencsinan.quizapp.dtos.testcheck.request.TestCheckRequest;
 import com.gencsinan.quizapp.dtos.testcheck.response.QuestionResponse;
@@ -10,15 +12,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class QuizController {
+    private final QuestionRepository questionRepository;
     private QuizRepository quizRepository;
 
     @Autowired
-    public QuizController(QuizRepository quizRepository) {
+    public QuizController(QuizRepository quizRepository, QuestionRepository questionRepository) {
         this.quizRepository = quizRepository;
+        this.questionRepository = questionRepository;
     }
 
     @GetMapping("/test/{state}")
@@ -84,8 +90,33 @@ public class QuizController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/training")
-    public ResponseEntity<Question> getRandomQuestion() {
-        return ResponseEntity.notFound().build();
+    @GetMapping("/practice")
+    public ResponseEntity<QuestionPractice> getRandomQuestion() {
+        Question randomQuestion = quizRepository.findRandomGeneralQuestions(1).get(0);
+
+        QuestionPractice questionPractice = new QuestionPractice();
+        questionPractice.setQuestionId(randomQuestion.getId());
+        questionPractice.setQuestionText(randomQuestion.getQuestionText());
+
+        List<AnswerPractice> answersPractice = randomQuestion.getAnswers().stream()
+                .map(answer -> new AnswerPractice(
+                        answer.getId(),
+                        answer.getAnswerText())
+                )
+                .collect(Collectors.toList());
+
+        Collections.shuffle(answersPractice);
+
+        questionPractice.setAnswers(answersPractice);
+
+        questionPractice.setCorrectAnswerId(
+                randomQuestion.getAnswers().stream()
+                        .filter(Answer::isCorrect)
+                        .map(Answer::getId)
+                        .findFirst()
+                        .orElse(null)
+        );
+
+        return ResponseEntity.ok(questionPractice);
     }
 }
