@@ -1,7 +1,8 @@
-package com.gencsinan.quizapp.question;
+package com.gencsinan.quizapp.dtos.test.response;
 
 import com.gencsinan.quizapp.answer.Answer;
-import com.gencsinan.quizapp.answer.AnswerWithoutCorrectDTO;
+import com.gencsinan.quizapp.question.Question;
+import com.gencsinan.quizapp.question.QuestionWithImage;
 
 import java.util.stream.Collectors;
 

@@ -1,7 +1,4 @@
-package com.gencsinan.quizapp.question;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.gencsinan.quizapp.answer.AnswerWithoutCorrectDTO;
+package com.gencsinan.quizapp.dtos.test.response;
 
 import java.util.List;
 

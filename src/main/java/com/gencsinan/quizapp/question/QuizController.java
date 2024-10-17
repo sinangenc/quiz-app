@@ -3,6 +3,8 @@ package com.gencsinan.quizapp.question;
 import com.gencsinan.quizapp.answer.Answer;
 import com.gencsinan.quizapp.dtos.practice.response.AnswerPractice;
 import com.gencsinan.quizapp.dtos.practice.response.QuestionPractice;
+import com.gencsinan.quizapp.dtos.test.response.QuestionWithoutCorrectAnswerDTO;
+import com.gencsinan.quizapp.dtos.test.response.QuizQuestionMapper;
 import com.gencsinan.quizapp.dtos.testcheck.request.QuestionAnswer;
 import com.gencsinan.quizapp.dtos.testcheck.request.TestCheckRequest;
 import com.gencsinan.quizapp.dtos.testcheck.response.QuestionResponse;

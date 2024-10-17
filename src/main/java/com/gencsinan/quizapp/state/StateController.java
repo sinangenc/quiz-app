@@ -1,5 +1,6 @@
 package com.gencsinan.quizapp.state;
 
+import com.gencsinan.quizapp.dtos.state.response.StateDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

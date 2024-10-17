@@ -1,4 +1,4 @@
-package com.gencsinan.quizapp.state;
+package com.gencsinan.quizapp.dtos.state.response;
 
 public class StateDTO {
     private String code;
