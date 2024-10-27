@@ -1,7 +1,7 @@
 package com.gencsinan.quizapp.user.auth;
 
-import com.gencsinan.quizapp.dtos.auth.request.AuthRequest;
-import com.gencsinan.quizapp.dtos.auth.response.AuthResponse;
+import com.gencsinan.quizapp.dtos.auth.login.request.LoginRequest;
+import com.gencsinan.quizapp.dtos.auth.login.response.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +13,7 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -20,6 +21,7 @@ import java.time.Instant;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/auth")
 public class AuthController {
 
     private final JwtEncoder jwtEncoder;
@@ -35,13 +37,13 @@ public class AuthController {
         this.jwtExpirationInSeconds = jwtExpirationInSeconds;
     }
 
-    @PostMapping("/auth")
-    public ResponseEntity<AuthResponse> auth(@RequestBody AuthRequest authRequest) {
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         // Check user credentials
         var authenticatedUser = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        authRequest.getEmail(),
-                        authRequest.getPassword()
+                        loginRequest.getEmail(),
+                        loginRequest.getPassword()
                 )
         );
 
@@ -63,8 +65,9 @@ public class AuthController {
 
         String token = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
 
-        AuthResponse response = new AuthResponse(token);
+        LoginResponse response = new LoginResponse(token);
         return ResponseEntity.ok(response);
     }
+
 
 }

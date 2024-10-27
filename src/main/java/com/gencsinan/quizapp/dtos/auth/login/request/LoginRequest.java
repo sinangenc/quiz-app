@@ -1,6 +1,6 @@
-package com.gencsinan.quizapp.dtos.auth.request;
+package com.gencsinan.quizapp.dtos.auth.login.request;
 
-public class AuthRequest {
+public class LoginRequest {
     private String email;
     private String password;
 
