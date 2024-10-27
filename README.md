@@ -18,3 +18,4 @@ The frontend part of this application is maintained in a separate repository. Yo
 | GET    | `/test/{state}`         | Returns a sample test for a given state (Bundesland).                             |
 | POST   | `/test/check`           | Checks the user's answers for a test and returns the result.                      |
 | GET    | `/practice`             | Returns a single practice question with the correct answer for training purposes. |
+| POST   | `/auth`                 | Authenticates user credentials and returns a JWT token for secure access.         |
