@@ -21,3 +21,4 @@ The frontend part of this application is maintained in a separate repository. Yo
 | POST   | `/auth/login`           | Authenticates user credentials and returns a JWT token for secure access.         |
 | POST   | `/auth/register`        | Registers a new user with provided details.                                       |
 | GET    | `/users/me`             | Returns the authenticated user's profile information.                             |
+| DELETE | `/users/me`             | Deletes the authenticated user.                                                   |
