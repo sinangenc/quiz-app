@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @RestController
@@ -61,9 +63,11 @@ public class QuizController {
                     .orElse(null);
 
             Long selectedAnswerId = request.getAnswers().stream()
-                    .filter(questionAnswer -> questionAnswer.getQuestionId().equals(question.getId()))
+                    .filter(questionAnswer -> questionAnswer.getQuestionId() != null && questionAnswer.getQuestionId().equals(question.getId())) // Safe null check for questionId
                     .map(QuestionAnswer::getAnswerId)
+                    .map(Optional::ofNullable)
                     .findFirst()
+                    .flatMap(Function.identity())
                     .orElse(null);
 
             QuestionResponse questionResponse = new QuestionResponse();
