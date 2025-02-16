@@ -7,11 +7,13 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -46,7 +48,7 @@ public class SecurityConfig{
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf-> csrf.disable())
-                .cors(cors -> cors.disable())
+                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth ->
                         auth
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -59,7 +61,17 @@ public class SecurityConfig{
                                 .jwt(
                                         (jwt) -> jwt.decoder(jwtDecoder())
                                 )
-                ).userDetailsService(userDetailsService);
+                )
+                .userDetailsService(userDetailsService)
+                //.exceptionHandling(Customizer.withDefaults());
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            //System.out.println(authException);
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            response.setContentType("application/json"); // Set the content type to JSON
+                            response.getWriter().write("{\"status\": \"401\", \"message\": \"Requires authentication\"}");
+                        })
+                );
 
         return http.build();
     }
