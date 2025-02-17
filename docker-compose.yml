@@ -1,0 +1,49 @@
+services:
+  backend:
+    container_name: quizapp_backend
+    build:
+      context: ./quiz-app-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/quizapp
+      SPRING_DATASOURCE_USERNAME: quizapp_user
+      SPRING_DATASOURCE_PASSWORD: quizapp_password
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - frontend-backend
+      - backend-db
+
+  frontend:
+    container_name: quizapp_frontend
+    build:
+      context: ./quiz-app-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - frontend-backend
+
+  db:
+    container_name: quizapp_db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: quizapp_user
+      POSTGRES_PASSWORD: quizapp_password
+      POSTGRES_DB: quizapp
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - backend-db
+
+networks:
+  frontend-backend:
+  backend-db:
+
+volumes:
+  db-data:
