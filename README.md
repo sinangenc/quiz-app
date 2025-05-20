@@ -1,10 +1,8 @@
-# Quiz App - Backend
+# Quiz App
 
-This repository contains the backend API of the "Life in Germany (Leben in Deutschland)" quiz app, designed to help users prepare for the German citizenship test.
+This repository contains quiz app "Life in Germany (Leben in Deutschland)", designed to help users prepare for the German citizenship test.
 
-<!-- 
-The frontend part of this application is maintained in a separate repository. You can find it [here](https://github.com/your-username/frontend-repo-name).
--->
+
 
 ## API Endpoints
 
@@ -22,3 +20,24 @@ The frontend part of this application is maintained in a separate repository. Yo
 | POST   | `/auth/register`        | Registers a new user with provided details.                                       |
 | GET    | `/users/me`             | Returns the authenticated user's profile information.                             |
 | DELETE | `/users/me`             | Deletes the authenticated user.                                                   |
+
+
+## Setup & How to Run
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/sinangenc/quiz-app.git
+cd quiz-app
+```
+
+2. **Start the application using Docker Compose:**
+
+```bash
+docker-compose up --build
+```
+This command will build and start both the frontend and backend services.
+
+3. **Access the Application:**
+
+Once the containers are up and running, the frontend should be accessible at [http://localhost:3000](http://localhost:3000).
