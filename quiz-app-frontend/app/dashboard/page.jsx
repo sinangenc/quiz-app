@@ -3,6 +3,7 @@
 import { useEffect } from "react"
 import { useAuth } from "../_context/AuthContext"
 import PrivateRoute from "../_components/PrivateRoute/PrivateRoute"
+import Link from "next/link"
 
 
 export default function DashboardPage(){
@@ -48,20 +49,24 @@ export default function DashboardPage(){
 
 
                     <div className="mt-6">
-                        <button
-                            onClick={()=>alert("Not yet implemented!")}
-                            className="inline-flex items-center justify-center w-full px-4 py-2.5 mt-4 overflow-hidden text-sm text-white transition-colors duration-300 bg-amber-600 rounded-lg shadow sm:w-auto sm:mx-2 sm:mt-0 hover:bg-amber-500 ">
+
+                        <Link
+                            href="/profile"
+                            className="inline-flex items-center justify-center w-full px-4 py-2.5 mt-4 overflow-hidden text-sm text-white transition-colors duration-300 bg-amber-600 rounded-lg shadow sm:w-auto sm:mx-2 sm:mt-0 hover:bg-amber-500"
+                        >
                             <span className="mx-2">
-                            Update Personal Infos
+                                Update Personal Infos
                             </span>
-                        </button>
-                        <button
-                            onClick={()=>alert("Not yet implemented!")}
-                            className="inline-flex items-center justify-center w-full px-4 py-2.5 mt-4 overflow-hidden text-sm text-white transition-colors duration-300 bg-cyan-600 rounded-lg shadow sm:w-auto sm:mx-2 sm:mt-0 hover:bg-cyan-500">
+                        </Link>
+
+                        <Link
+                            href="/change-password"
+                            className="inline-flex items-center justify-center w-full px-4 py-2.5 mt-4 overflow-hidden text-sm text-white transition-colors duration-300 bg-cyan-600 rounded-lg shadow sm:w-auto sm:mx-2 sm:mt-0 hover:bg-cyan-500"
+                        >
                             <span className="mx-2">
-                            Change Password
+                                Change Password
                             </span>
-                        </button>
+                        </Link>
                     </div>
 
                 
