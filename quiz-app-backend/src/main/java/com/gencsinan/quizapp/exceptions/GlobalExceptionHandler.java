@@ -24,6 +24,17 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleUserNotFoundException(UserNotFoundException exception) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                "User not found",
+                exception.getMessage()
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(PasswordException.class)
     public ResponseEntity<ErrorResponse> handlePasswordException(PasswordException exception) {
         ErrorResponse errorResponse = new ErrorResponse(

@@ -2,9 +2,7 @@ package com.gencsinan.quizapp.question;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -17,40 +15,30 @@ import java.util.Optional;
 @RequestMapping("/admin/questions")
 public class QuestionController {
 
-    private final QuestionRepository questionRepository;
+    private final QuestionService questionService;
 
     @Autowired
-    public QuestionController(QuestionRepository questionRepository) {
-        this.questionRepository = questionRepository;
+    public QuestionController(QuestionService questionService) {
+        this.questionService = questionService;
     }
 
     @GetMapping
     public ResponseEntity<List<Question>> getAllQuestions(Pageable pageable) {
-        Page<Question> questions = questionRepository.findAll(
-                PageRequest.of(
-                        pageable.getPageNumber(),
-                        pageable.getPageSize(),
-                        pageable.getSortOr(Sort.by(Sort.Direction.ASC, "id"))
-                )
-        );
-
+        Page<Question> questions = questionService.getAllQuestions(pageable);
         return ResponseEntity.ok(questions.getContent());
     }
 
     @GetMapping("/{questionId}")
     public ResponseEntity<Question> getQuestionById(@PathVariable Long questionId) {
-        Optional<Question> question = questionRepository.findById(questionId);
-
-        if (question.isPresent()) {
-            return ResponseEntity.ok(question.get());
-        }
-
-        return ResponseEntity.notFound().build();
+        Optional<Question> question = questionService.getQuestionById(questionId);
+        return question
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
     public ResponseEntity<Void> createNewQuestion(@RequestBody Question question, UriComponentsBuilder ucb) {
-        Question savedQuestion = questionRepository.save(question);
+        Question savedQuestion = questionService.saveQuestion(question);
         URI locationOfNewQuestion = ucb
                 .path("/admin/questions/{id}")
                 .buildAndExpand(savedQuestion.getId())
@@ -61,26 +49,23 @@ public class QuestionController {
 
     @PutMapping("/{questionId}")
     public ResponseEntity<Void> updateQuestion(@PathVariable Long questionId, @RequestBody Question updatedQuestion) {
-        Optional<Question> question = questionRepository.findById(questionId);
+        boolean updated = questionService.updateQuestion(questionId, updatedQuestion);
 
-        if (question.isPresent()) {
-            updatedQuestion.setId(questionId);
-            questionRepository.save(updatedQuestion);
+        if (updated) {
             return ResponseEntity.noContent().build();
         }
-
 
         return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{questionId}")
     public ResponseEntity<Void> deleteQuestionById(@PathVariable Long questionId) {
-        if(questionRepository.existsById(questionId)){
-            questionRepository.deleteById(questionId);
+        boolean deleted = questionService.deleteQuestionById(questionId);
+
+        if (deleted) {
             return ResponseEntity.noContent().build();
         }
-        else{
-            return ResponseEntity.notFound().build();
-        }
+
+        return ResponseEntity.notFound().build();
     }
 }

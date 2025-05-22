@@ -3,20 +3,23 @@ package com.gencsinan.quizapp.state;
 import com.gencsinan.quizapp.dtos.state.response.StateDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/states")
 public class StateController {
-    @GetMapping("/states")
-    public ResponseEntity<List<StateDTO>> getAllStates(){
-        List<StateDTO> states = Arrays.stream(State.values())
-                .map(state -> new StateDTO(state.name(), state.getName()))
-                .collect(Collectors.toList());
+    private final StateService stateService;
 
+    public StateController(StateService stateService) {
+        this.stateService = stateService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<StateDTO>> getAllStates() {
+        List<StateDTO> states = stateService.getAllStates();
         return ResponseEntity.ok(states);
     }
 }

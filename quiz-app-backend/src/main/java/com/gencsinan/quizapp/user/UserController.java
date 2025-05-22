@@ -15,73 +15,36 @@ import java.security.Principal;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+    private final UserService userService;
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserController(UserService userService, UserRepository userRepository) {
+        this.userService = userService;
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/me")
-    public ResponseEntity<UserInfoResponse> authenticatedUser(Principal principal) {
-        String email = principal.getName();
-        User user = userRepository.findByEmail(email);
-
-        UserInfoResponse response = new UserInfoResponse(user.getId(), user.getName(), user.getEmail());
+    public ResponseEntity<UserInfoResponse> getAuthenticatedUser(Principal principal) {
+        UserInfoResponse response = userService.getUserInfo(principal.getName());
         return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/me")
     public ResponseEntity<Void> deleteAuthenticatedUser(Principal principal) {
-        String email = principal.getName();
-        if (userRepository.existsByEmail(email)) {
-            userRepository.deleteByEmail(email);
-            return ResponseEntity.noContent().build();
-        }
-        else {
-            return ResponseEntity.notFound().build();
-        }
+        userService.deleteUserByEmail(principal.getName());
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/me")
     public ResponseEntity<Void> updateAuthenticatedUser(Principal principal, @RequestBody UserProfileUpdateRequestDTO updatedUserProfile){
-        String email = principal.getName();
-        User user = userRepository.findByEmail(email);
-
-        if (user != null) {
-            user.setName(updatedUserProfile.getName());
-            userRepository.save(user);
-
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.notFound().build();
+        userService.updateUserProfile(principal.getName(), updatedUserProfile);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/me/password")
     public ResponseEntity<Void> updatePasswordOfAuthenticatedUser(Principal principal, @RequestBody UserPasswordChangeRequestDTO passwordChangeRequest){
-
-        // Check password
-        if (passwordChangeRequest.getNewPassword().length() < 6) {
-            throw new PasswordException("Password must be at least 6 characters.");
-        }
-
-        String email = principal.getName();
-        User user = userRepository.findByEmail(email);
-
-        if (user != null) {
-            if (!passwordEncoder.matches(passwordChangeRequest.getOldPassword(), user.getPassword())) {
-                throw new PasswordException("Old Password is incorrect.");
-            }
-
-            user.setPassword(passwordEncoder.encode(passwordChangeRequest.getNewPassword()));
-            userRepository.save(user);
-
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.notFound().build();
+        userService.changePassword(principal.getName(), passwordChangeRequest);
+        return ResponseEntity.noContent().build();
     }
 }
