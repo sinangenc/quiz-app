@@ -1,6 +1,8 @@
 import { useAuth } from '@/app/_context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import Loading from "../Loading/Loading"
+
 
 const PublicRoute = ({ children }) => {
     const { isLoggedIn, loading } = useAuth()
@@ -15,8 +17,8 @@ const PublicRoute = ({ children }) => {
     }, [isLoggedIn, loading, router]);
 
 
-    if (loading) {
-        return <p>Loading</p>;
+     if(loading){
+        return <Loading />
     }
 
     if (!isLoggedIn) {

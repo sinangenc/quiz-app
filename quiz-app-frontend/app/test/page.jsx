@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import Timer from "../_components/Timer/Timer"
+import Loading from "../_components/Loading/Loading"
 
 
 export default function Test(){
@@ -83,9 +84,7 @@ export default function Test(){
 
 
     if(loading){
-        return(
-            <div>Loading...</div>
-        )
+        return <Loading />
     }
 
     const currentQuestion = questions.find(question => question.id === currentQuestionId)
@@ -96,8 +95,6 @@ export default function Test(){
 
 
     const reviewResult = reviewResults.find(result => result.questionId === currentQuestion.id);
-
-    const timeIsUp = () => alert("qqq")
 
     return(
     <div className="container flex flex-col items-center px-4 py-12 mx-auto text-center">

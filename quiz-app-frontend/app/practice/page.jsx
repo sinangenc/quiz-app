@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import Timer from "../_components/Timer/Timer"
+import Loading from "../_components/Loading/Loading"
 
 
 export default function Practice(){
@@ -72,11 +73,9 @@ export default function Practice(){
 
 
     if(loading){
-        return(
-            <div>Loading...</div>
-        )
+        return <Loading />
     }
-
+    
     return(
     <div className="container flex flex-col items-center px-4 py-12 mx-auto text-center">
         
