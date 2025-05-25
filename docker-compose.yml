@@ -12,19 +12,18 @@ services:
     depends_on:
       - db
     networks:
-      - frontend-backend
       - backend-db
 
   frontend:
     container_name: quizapp_frontend
     build:
       context: ./quiz-app-frontend
+      args:
+        - NEXT_PUBLIC_API_BASE_URL=http://localhost:8080
     ports:
       - "3000:3000"
     depends_on:
       - backend
-    networks:
-      - frontend-backend
 
   db:
     container_name: quizapp_db
@@ -42,7 +41,6 @@ services:
       - backend-db
 
 networks:
-  frontend-backend:
   backend-db:
 
 volumes:

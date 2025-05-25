@@ -4,6 +4,10 @@ FROM node:18-alpine
 # Set the working directory inside the container
 WORKDIR /app
 
+# Add build arg for setting backend API
+ARG NEXT_PUBLIC_API_BASE_URL=http://localhost:8080
+ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
+
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
