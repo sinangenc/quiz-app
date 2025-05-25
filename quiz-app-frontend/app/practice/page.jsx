@@ -1,15 +1,11 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-import Timer from "../_components/Timer/Timer"
-import Loading from "../_components/Loading/Loading"
+import Loading from "@/app/_components/Loading/Loading"
 
 
 export default function Practice(){
-
-    const QUESTION_URL = 'http://localhost:8080/practice'
+    const QUESTIONS_URL = process.env.NEXT_PUBLIC_API_BASE_URL+'/practice'
 
     const [currentQuestion, setCurrentQuestion] = useState({});
     const [loading, setLoading] = useState(true);
@@ -34,19 +30,26 @@ export default function Practice(){
         }
     }
 
-    const fetchQuestion = () => {
+    const fetchQuestion = async () => {
         setSelectedAnswerId(null);
         setLoading(true);
-        fetch(QUESTION_URL)
-            .then(response => response.json())
-            .then(question => {  
-                setLoading(false);
-                setCurrentQuestion(question);
-                console.log("Question retrieved...");
-            });
+        
+        try {
+            const response = await fetch(QUESTIONS_URL);
+        
+            if (!response.ok) {
+                throw new Error("Question could not retrieved...");
+            }
+
+            const question = await response.json();
+            setLoading(false);
+            setCurrentQuestion(question);
+        } catch(err) {
+            console.log(err.message);
+        }
     }
 
-    // İlk soruyu al
+    // Get first question
     useEffect(() => {
         fetchQuestion();
     }, []);
@@ -165,7 +168,7 @@ export default function Practice(){
 
         </div>
 
-        <div className="mt-8 w-full max-w-2xl bg-white">
+        <div className="mt-8 w-full max-w-2xl">
             <div className="flex justify-between items-center">
 
                 {/* Finish Test Button */}

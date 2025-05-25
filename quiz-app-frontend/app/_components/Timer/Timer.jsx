@@ -32,10 +32,6 @@ export default function Timer({ duration, onTimeUp }) {
         return () => clearInterval(interval);
     }, [duration]);
 
-
-    
-
-
     // Format time as mm:ss
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);

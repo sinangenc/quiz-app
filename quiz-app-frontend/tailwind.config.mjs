@@ -11,6 +11,7 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "var(--color-primary)",
+        primaryemphasis: "var(--color-primary-emphasis)",
         secondary: "var(--color-secondary)",
         info: "var(--color-info)",
         success: "var(--color-success)",

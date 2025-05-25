@@ -3,14 +3,15 @@
 import { useEffect, useState } from "react"
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-import Timer from "../_components/Timer/Timer"
-import Loading from "../_components/Loading/Loading"
+import Timer from "@/app/_components/Timer/Timer"
+import Loading from "@/app/_components/Loading/Loading"
 
 
 export default function Test(){
 
-    const QUESTIONS_URL = 'http://localhost:8080/test/BERLIN'
-    const CHECK_QUESTIONS_URL = 'http://localhost:8080/test/check'
+    const QUESTIONS_URL = process.env.NEXT_PUBLIC_API_BASE_URL+'/test/BERLIN'
+    const CHECK_QUESTIONS_URL = process.env.NEXT_PUBLIC_API_BASE_URL+'/test/check'
+    
 
     const [questions, setQuestions] = useState([]);
     const [answers, setAnswers] = useState([]);
@@ -34,53 +35,65 @@ export default function Test(){
         }
     }
 
-    const confirmFinishTest = () => {
+    const confirmFinishTest = async () => {
         setCheckLoading(true)
-
-        fetch(CHECK_QUESTIONS_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ answers }),
-        })
-        .then((response) => {
-            if (response.status === 200) {
-                // 200 means that test results were retrieved
-                return response.json().then((data) => {
-                    console.log(data)
-                    setReviewResults(data.questions)
-                    setReviewMode(true)
-                });
+        
+        try {
+            const response = await fetch(CHECK_QUESTIONS_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ answers })
+            });
+        
+            if (!response.ok) {
+                throw new Error("Answers could not retrieved...");
             }
-        })
-        .finally((data) => {
+
+            const data = await response.json();
+            setReviewResults(data.questions);
+            setReviewMode(true);
+        } catch(err) {
+            console.log(err.message);
+        } finally {
             setCheckLoading(false)
             closeModal()
-        })
+        }
         
     }
 
 
     // Sorulari al
-    useEffect(()=>{
-        fetch(QUESTIONS_URL)
-        .then(response => response.json())
-        .then(questions=>{
-            setQuestions(questions)
-            setCurrentQuestionId(questions[0].id)
-            setLoading(false)
+    const fetchQuestions = async () => {
+        setLoading(true);
+        
+        try {
+            const response = await fetch(QUESTIONS_URL);
+        
+            if (!response.ok) {
+                throw new Error("Questions could not retrieved...");
+            }
+
+            const questions = await response.json();
+            setQuestions(questions);
+            setCurrentQuestionId(questions[0].id);
+            setLoading(false);
 
             const initialAnswers = [];
             questions.forEach((question) => {
                 initialAnswers.push({'questionId': question.id, 'answerId': null})
                // initialAnswers[question.id] = null;
             });
-            setAnswers(initialAnswers)
-            
-            console.log("Questions retrieved...")
-        });
-    }, [])
+            setAnswers(initialAnswers);
+        } catch(err) {
+            console.log(err.message);
+        }
+    }
+
+    useEffect(() => {
+        fetchQuestions();
+    }, []);
 
 
     if(loading){
@@ -181,7 +194,7 @@ export default function Test(){
 
         </div>
 
-        <div className="mt-8 w-full max-w-2xl bg-white">
+        <div className="mt-8 w-full max-w-2xl">
             <div className="flex justify-between items-center">
                 {/* Previous Button */}
                 <button
@@ -219,7 +232,7 @@ export default function Test(){
         </div>
 
 
-        <div className="mt-8 w-full bg-white px-4 py-3">
+        <div className="mt-8 w-full px-4 py-3">
             <nav aria-label="Pagination" className="isolate inline-flex flex-wrap -space-x-px rounded-md shadow-xs">
             <div className="grid grid-cols-11 gap-2">
             {

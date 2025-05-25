@@ -2,11 +2,13 @@
 
 import Link from "next/link"
 import { useState } from "react"
-import isValidEmail from "../_utils/checkEmail"
-import PublicRoute from "../_components/PublicRoute/PublicRoute"
+import isValidEmail from "@/app/_utils/checkEmail"
+import PublicRoute from "@/app/_components/PublicRoute/PublicRoute"
+import ErrorAlert from "@/app/_components/Alert/ErrorAlert"
+import SuccessAlert from "@/app/_components/Alert/SuccessAlert"
 
 export default function RegisterPage(){
-    const REGISTER_URL = 'http://localhost:8080/auth/register'
+    const REGISTER_URL = process.env.NEXT_PUBLIC_API_BASE_URL+'/auth/register'
     
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
@@ -19,7 +21,7 @@ export default function RegisterPage(){
     const [error, setError] = useState(initialErrorTemplate)
     
     //Submit register form
-    function handleSubmit(e) {
+    const handleSubmit = async (e) =>{
         e.preventDefault();
 
         setError(initialErrorTemplate)
@@ -47,29 +49,30 @@ export default function RegisterPage(){
         }
 
         setLoading(true)
-        fetch(REGISTER_URL, {
+
+        try {
+          const response = await fetch(REGISTER_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ name, email, password, confirmPassword }),
-        })
-        .then((response) => {
-            if (response.status === 201) {
-                setIsNewUserCreated(true)
-            } else if (response.status === 409) {
-                return response.json().then((data) => {
-                    setError((prevState) => ({ ...prevState, general: data.message }))
-                });
-            } else {
-                setError((prevState) => ({ ...prevState, general:"An error is occured. Please try again later." }))
-            }
-        })
-        .finally((data) => {
-            setLoading(false)
-        })
+            body: JSON.stringify({ name, email, password, confirmPassword })
+          });
 
-        
+          if (response.status === 201) {
+            setIsNewUserCreated(true)
+          } else if (response.status === 409) {
+            const data = await response.json();
+            throw new Error(data.message);
+          } else {
+            throw new Error("An error is occurred. Please try again later.");
+          }
+
+        } catch(err) {
+          setError((prevState) => ({ ...prevState, general: err.message }));
+        } finally {
+          setLoading(false);
+        }
     }
 
     if(isNewUserCreated){
@@ -77,19 +80,7 @@ export default function RegisterPage(){
         <PublicRoute>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6">
                 <div className="sm:mx-auto sm:w-full sm:max-w-lg">
-                    
-                    <div className="w-full text-white bg-green-500">
-                        <div className="container flex items-center justify-between px-6 py-4 mx-auto">
-                            <div className="flex">
-                            <svg className="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
-                            </svg>
-                    
-                                <p className="mx-3">Your account was created! Please log in.</p>
-                            </div>
-                        </div>
-                    </div> 
-
+                    <SuccessAlert message="Your account was created! Please log in." />
                 </div>
             </div>
         </PublicRoute>
@@ -99,30 +90,13 @@ export default function RegisterPage(){
 
     return(
     <PublicRoute>
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6">
-            
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-                Create a new account
-                </h2>
-                {error.general && (
-                <div className="w-full text-white bg-red-500">
-                    <div className="container flex items-center justify-between px-6 py-4 mx-auto">
-                        <div className="flex">
-                            <svg viewBox="0 0 40 40" className="w-6 h-6 fill-current">
-                                <path d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z">
-                                </path>
-                            </svg>
-                
-                            <p className="mx-3">{error.general}</p>
-                        </div>
-                    </div>
-                </div> 
-                )}
-            </div>
+        <div className="flex flex-wrap justify-center gap-4 mt-10">
+          <div className="w-full max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+            <h3 className="mb-5 text-xl text-gray-800 text-center mb-3">Create a new account</h3>
 
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form className="space-y-6">
+            {error.general && <ErrorAlert message={error.general} />}
+            
+            <form className="space-y-6">
                 {/* Name Field */}
                 <div>
                     <label htmlFor="name" className="block text-sm/6 font-medium text-gray-900">
@@ -141,7 +115,7 @@ export default function RegisterPage(){
                         }}
                         type="text"
                         autoComplete="name"
-                        className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border border-gray-400"
+                        className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border border-gray-300 focus:border-indigo-400 focus:ring-indigo-400 focus:outline-none"
                     />
                     {error.name && <p className="text-red-500 text-sm">{error.name}</p>}
                     </div>
@@ -165,7 +139,7 @@ export default function RegisterPage(){
                         }}
                         type="email"
                         autoComplete="email"
-                        className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border border-gray-400"
+                        className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border border-gray-300 focus:border-indigo-400 focus:ring-indigo-400 focus:outline-none"
                     />
                     {error.email && <p className="text-red-500 text-sm">{error.email}</p>}
                     </div>
@@ -189,7 +163,7 @@ export default function RegisterPage(){
                         }}
                         type="password"
                         autoComplete="new-password"
-                        className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border border-gray-400"
+                        className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border border-gray-300 focus:border-indigo-400 focus:ring-indigo-400 focus:outline-none"
                     />
                     {error.password && <p className="text-red-500 text-sm">{error.password}</p>}
                     </div>
@@ -213,7 +187,7 @@ export default function RegisterPage(){
                         }}
                         type="password"
                         autoComplete="new-password"
-                        className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border border-gray-400"
+                        className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border border-gray-300 focus:border-indigo-400 focus:ring-indigo-400 focus:outline-none"
                     />
                     {error.confirmPassword && <p className="text-red-500 text-sm">{error.confirmPassword}</p>}
                     </div>
@@ -225,14 +199,14 @@ export default function RegisterPage(){
                     type="submit"
                     onClick={handleSubmit}
                     disabled={loading}
-                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500"
+                    className="flex w-full justify-center rounded-md px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs bg-primary hover:bg-primaryemphasis"
                     >
                     {loading ? "Creating account..." : "Register"}
                     </button>
                 </div>
-                </form>
+            </form>
 
-                <p className="mt-10 text-center text-sm/6 text-gray-500">
+            <p className="mt-5 text-center text-sm/6 text-gray-500">
                 Already have an account?{' '}
                 <Link 
                     href="/login" 
@@ -240,7 +214,7 @@ export default function RegisterPage(){
                     Sign in now
                 </Link>
                 </p>
-            </div>
+          </div>
         </div>
     </PublicRoute>
     )
