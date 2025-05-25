@@ -51,7 +51,6 @@ export default function UpdateProfilePage(){
         }
     };
     
-
     return (
         <PrivateRoute>
             <div className="mx-auto p-6 bg-white rounded-lg shadow text-gray-800">
@@ -68,7 +67,6 @@ export default function UpdateProfilePage(){
                         className="block w-full rounded-md px-3 py-2 mt-1 text-base text-gray-900 border border-gray-300 focus:border-indigo-400 focus:ring-indigo-400 focus:outline-none bg-gray-200 disabled:opacity-60 disabled:pointer-events-none"
                         value={userProfile.email}
                         disabled={true}
-                        onChange={(e) => setEmail(e.target.value)}
                         />
                     </label>
 
