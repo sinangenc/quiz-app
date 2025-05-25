@@ -39,9 +39,9 @@ const AuthProvider = ({children}) => {
         if (token) {
             setJwtToken(token);
             fetchUserProfile(token);
+        } else{
+            setLoading(false);
         }
-
-        //setLoading(false);
     }, []);
 
    const isLoggedIn = jwtToken !== null && userProfile !== null;
