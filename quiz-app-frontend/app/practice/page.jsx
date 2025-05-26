@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Loading from "@/app/_components/Loading/Loading"
+import Link from "next/link"
 
 
 export default function Practice(){
@@ -14,9 +15,10 @@ export default function Practice(){
     const [correctAnswers, setCorrectAnswers] = useState(0);
     const [incorrectAnswers, setIncorrectAnswers] = useState(0);
     
+    const [isFinished, setIsFinished] = useState(false)
     
     // Open the confirmation modal when the Finish Test button is clicked
-    const finishTest = () => setOpenDialog(true)
+    const finishTest = () => setIsFinished(true)
 
     const handleAnswerSelection = (answerId) => {
         if(!selectedAnswerId){
@@ -55,57 +57,60 @@ export default function Practice(){
     }, []);
 
 
-    const totalAnswers = correctAnswers + incorrectAnswers;
-    let correctPercentage = 0;
-    let incorrectPercentage = 0;
-
-    // Calculate percentage for the progress bar
-    if (totalAnswers === 0) {
-        correctPercentage = 50;
-        incorrectPercentage = 50;
-    } else if (correctAnswers === 0) {
-        correctPercentage = 0;
-        incorrectPercentage = 100;
-    } else if (incorrectAnswers === 0) {
-        correctPercentage = 100;
-        incorrectPercentage = 0;
-    } else {
-        correctPercentage = (correctAnswers / totalAnswers) * 100;
-        incorrectPercentage = 100 - correctPercentage;
-    }
-
-
     if(loading){
         return <Loading />
     }
+
+    if (isFinished) {
+        return (
+            <div className="container flex flex-col items-center px-4 py-12 mx-auto text-center">
+                <div className="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg border border-gray-200">
+                    <div className="text-left mb-6">
+                        <h4 className="text-2xl font-semibold text-center">Practice Session Finished!</h4>
+                        <p className="mt-4 text-center text-gray-700">
+                            You have completed the practice session. Your results are shown below:
+                        </p>
+                    </div>
+
+                    <div className="flex justify-center gap-8 mt-8">
+                        <div className="bg-green-200 text-green-800 px-6 py-4 rounded-lg shadow-md w-40">
+                            <div className="text-4xl font-bold">{correctAnswers}</div>
+                            <div className="mt-2 text-sm font-medium">Correct Answers</div>
+                        </div>
+
+                        <div className="bg-red-200 text-red-800 px-6 py-4 rounded-lg shadow-md w-40">
+                            <div className="text-4xl font-bold">{incorrectAnswers}</div>
+                            <div className="mt-2 text-sm font-medium">Wrong Answers</div>
+                        </div>
+                    </div>
+
+                    <div className="mt-10">
+                        <Link
+                            href="/"
+                            className="inline-block px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 transition">
+                            Go to Home
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     
     return(
     <div className="container flex flex-col items-center px-4 py-12 mx-auto text-center">
         
         {/* Progress Bar */}
-        <div className="w-full max-w-2xl h-8 bg-gray-200 rounded-lg flex">
-            {correctPercentage > 0 && (
-                <div
-                className={`h-full bg-green-500 text-white text-center flex items-center justify-center ${incorrectAnswers === 0 && correctAnswers !== 0 ? 'rounded-lg' : 'rounded-l-lg'}`}
-                    style={{
-                        width: `${correctPercentage}%`,
-                        minWidth: '15%'
-                    }}>
-                    {correctAnswers} Correct
-                </div>
-            )}
+        <div className="w-full max-w-2xl h-8 bg-gray-200 rounded-lg flex overflow-hidden">
+            <div className="w-1/2 h-full bg-green-500 text-white text-center flex items-center justify-center rounded-l-lg">
+                {correctAnswers} Correct
+            </div>
 
-            {incorrectPercentage > 0 && (
-                <div
-                className={`h-full bg-red-500 text-white text-center flex items-center justify-center ${correctAnswers === 0 && incorrectAnswers !== 0? 'rounded-lg' : 'rounded-r-lg'}`}
-                    style={{
-                        width: `${incorrectPercentage}%`,
-                        minWidth: '15%'
-                    }}>
-                    {incorrectAnswers} Wrong
-                </div>
-            )}
+            <div className="w-1/2 h-full bg-red-500 text-white text-center flex items-center justify-center rounded-r-lg">
+                {incorrectAnswers} Wrong
+            </div>
         </div>
+
         
         {/* Header for Question x and Timer */}
         <div className="w-full max-w-2xl flex justify-between mt-6 mb-2 px-1">
