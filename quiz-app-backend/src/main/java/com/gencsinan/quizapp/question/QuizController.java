@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -26,8 +27,8 @@ public class QuizController {
     }
 
     @PostMapping("/test/check")
-    public ResponseEntity<TestCheckResponse> checkAnswers(@RequestBody TestCheckRequest request) {
-        TestCheckResponse response = quizService.checkAnswers(request);
+    public ResponseEntity<TestCheckResponse> checkAnswers(@RequestBody TestCheckRequest request, Principal principal) {
+        TestCheckResponse response = quizService.checkAnswers(request, principal);
         return ResponseEntity.ok(response);
     }
 

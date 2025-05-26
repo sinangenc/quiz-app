@@ -9,9 +9,15 @@ import com.gencsinan.quizapp.dtos.testcheck.request.QuestionAnswer;
 import com.gencsinan.quizapp.dtos.testcheck.request.TestCheckRequest;
 import com.gencsinan.quizapp.dtos.testcheck.response.QuestionResponse;
 import com.gencsinan.quizapp.dtos.testcheck.response.TestCheckResponse;
+import com.gencsinan.quizapp.quizresult.QuizResult;
+import com.gencsinan.quizapp.quizresult.QuizResultService;
+import com.gencsinan.quizapp.quizresult.QuizType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,10 +28,12 @@ import java.util.stream.Collectors;
 @Service
 public class QuizService {
     private final QuizRepository quizRepository;
+    private final QuizResultService quizResultService;
 
     @Autowired
-    public QuizService(QuizRepository quizRepository){
+    public QuizService(QuizRepository quizRepository, QuizResultService quizResultService){
         this.quizRepository = quizRepository;
+        this.quizResultService = quizResultService;
     }
 
     public List<QuestionWithoutCorrectAnswerDTO> generateRandomTest(String state) {
@@ -41,7 +49,7 @@ public class QuizService {
                 .toList();
     }
 
-    public TestCheckResponse checkAnswers(TestCheckRequest request) {
+    public TestCheckResponse checkAnswers(TestCheckRequest request, Principal principal) {
         // Extract question ids from request
         List<Long> questionIds = request.getAnswers().stream()
                 .map(QuestionAnswer::getQuestionId)
@@ -78,10 +86,26 @@ public class QuizService {
         }
 
         // Build summary
+        long correctAnswersCount = questionsForResponse.stream().filter(QuestionResponse::isCorrect).count();
+        long wrongAnswersCount = questionsForResponse.stream().filter(q -> !q.isCorrect()).count();
+
         TestCheckResponse response = new TestCheckResponse();
         response.setQuestions(questionsForResponse);
-        response.setNumberOfCorrectAnswers(questionsForResponse.stream().filter(QuestionResponse::isCorrect).count());
-        response.setNumberOfWrongAnswers(questionsForResponse.stream().filter(q -> !q.isCorrect()).count());
+        response.setNumberOfCorrectAnswers(correctAnswersCount);
+        response.setNumberOfWrongAnswers(wrongAnswersCount);
+
+        // Save quiz results if the user logged in
+        if (principal != null &&
+            principal.getName() != null &&
+            !principal.getName().isEmpty()) {
+            // User logged in
+            QuizResult quizResult = new QuizResult();
+            quizResult.setQuizType(QuizType.TEST);
+            quizResult.setCorrectAnswersCount(correctAnswersCount);
+            quizResult.setWrongAnswersCount(wrongAnswersCount);
+
+            quizResultService.saveQuizResult(quizResult, principal);
+        }
 
         return response;
     }

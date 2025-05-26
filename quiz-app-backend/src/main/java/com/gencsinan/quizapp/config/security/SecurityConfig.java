@@ -53,6 +53,7 @@ public class SecurityConfig{
                         auth
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/users/me").authenticated()
+                                .requestMatchers("/quiz-results").authenticated()
                                 .anyRequest().permitAll()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
