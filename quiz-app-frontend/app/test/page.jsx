@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react"
+import { useAuth } from "@/app/_context/AuthContext"
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import Timer from "@/app/_components/Timer/Timer"
@@ -11,7 +12,7 @@ export default function Test(){
 
     const QUESTIONS_URL = process.env.NEXT_PUBLIC_API_BASE_URL+'/test/BERLIN'
     const CHECK_QUESTIONS_URL = process.env.NEXT_PUBLIC_API_BASE_URL+'/test/check'
-    
+    const { jwtToken } = useAuth()
 
     const [questions, setQuestions] = useState([]);
     const [answers, setAnswers] = useState([]);
@@ -20,6 +21,10 @@ export default function Test(){
 
     const [openDialog, setOpenDialog] = useState(false);
     const [checkLoading, setCheckLoading] = useState(false);
+
+    const [isFinished, setIsFinished] = useState(false);
+    const [correctAnswers, setCorrectAnswers] = useState(0);
+    const [incorrectAnswers, setIncorrectAnswers] = useState(0);
 
     const [reviewMode, setReviewMode] = useState(false);
     const [reviewResults, setReviewResults] = useState([]);
@@ -39,11 +44,17 @@ export default function Test(){
         setCheckLoading(true)
         
         try {
+            const headers = {
+            'Content-Type': 'application/json',
+            };
+
+            if (jwtToken) {
+            headers['Authorization'] = `Bearer ${jwtToken}`;
+            }
+
             const response = await fetch(CHECK_QUESTIONS_URL, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: headers,
                 body: JSON.stringify({ answers })
             });
         
@@ -53,7 +64,12 @@ export default function Test(){
 
             const data = await response.json();
             setReviewResults(data.questions);
-            setReviewMode(true);
+            setCorrectAnswers(data.numberOfCorrectAnswers);
+            setIncorrectAnswers(data.numberOfWrongAnswers);
+
+            setCurrentQuestionId(questions[0].id);
+            setIsFinished(true);
+            //setReviewMode(true);
         } catch(err) {
             console.log(err.message);
         } finally {
@@ -100,6 +116,41 @@ export default function Test(){
         return <Loading />
     }
 
+    if (isFinished) {
+        return (
+            <div className="container flex flex-col items-center px-4 py-12 mx-auto text-center">
+                <div className="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg border border-gray-200">
+                    <div className="text-left mb-6">
+                        <h4 className="text-2xl font-semibold text-center">Practice Session Finished!</h4>
+                        <p className="mt-4 text-center text-gray-700">
+                            You have completed the practice session. Your results are shown below:
+                        </p>
+                    </div>
+
+                    <div className="flex justify-center gap-8 mt-8">
+                        <div className="bg-green-200 text-green-800 px-6 py-4 rounded-lg shadow-md w-40">
+                            <div className="text-4xl font-bold">{correctAnswers}</div>
+                            <div className="mt-2 text-sm font-medium">Correct Answers</div>
+                        </div>
+
+                        <div className="bg-red-200 text-red-800 px-6 py-4 rounded-lg shadow-md w-40">
+                            <div className="text-4xl font-bold">{incorrectAnswers}</div>
+                            <div className="mt-2 text-sm font-medium">Wrong Answers</div>
+                        </div>
+                    </div>
+
+                    <div className="mt-10">
+                        <button
+                            onClick={()=>{setReviewMode(true); setIsFinished(false);}}
+                            className="inline-block px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 transition">
+                            Review Answers 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     const currentQuestion = questions.find(question => question.id === currentQuestionId)
 
     const currentQuestionIndex = answers.findIndex(answer => answer.questionId === currentQuestionId);
@@ -128,7 +179,7 @@ export default function Test(){
         
         <div id="questionContainer" className="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg border border-gray-200">
             <div className="text-2xl font-semibold text-left mb-6">
-            <p>{console.log("reviewMode: ", reviewMode)} {currentQuestion.questionText}</p>
+            <p>{currentQuestion.questionText}</p>
             {
             //Question {currentQuestion.id}:
             }
