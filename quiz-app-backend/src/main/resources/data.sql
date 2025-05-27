@@ -99,7 +99,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (20, 'rechtsstaatl
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (20, 'gesetzestreu.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (20, 'verfassungswidrig.', TRUE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches ist das Wappen der Bundesrepublik Deutschland?', NULL);
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (21, '/img/questions/021.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (21, 'http://localhost:8080/files/questions/021.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (21, '1', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (21, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (21, '3', FALSE);
@@ -270,7 +270,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (54, 'Judikative',
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (54, 'Exekutive', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (54, 'Direktive', TRUE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Was zeigt dieses Bild?', NULL);
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (55, '/img/questions/055.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (55, 'http://localhost:8080/files/questions/055.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (55, 'den Bundestagssitz in Berlin', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (55, 'das Bundesverfassungsgericht in Karlsruhe', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (55, 'das Bundesratsgebäude in Berlin', FALSE);
@@ -346,7 +346,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (69, 'Landräte', 
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (69, 'Gemeinden', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (69, 'Bezirksämter', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Der deutsche Bundespräsident Gustav Heinemann gibt Helmut Schmidt 1974 die Ernennungsurkunde zum deutschen Bundeskanzler. Was gehört zu den Aufgaben des deutschen Bundespräsidenten / der deutschen Bundespräsidentin?', NULL);
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (70, '/img/questions/070.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (70, 'http://localhost:8080/files/questions/070.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (70, 'Er / Sie führt die Regierungsgeschäfte.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (70, 'Er / Sie kontrolliert die Regierungspartei.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (70, 'Er / Sie wählt die Minister / Ministerinnen aus.', FALSE);
@@ -647,7 +647,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (129, 'der Ministe
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (129, 'der Bundestag.', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (129, 'der Bundespräsident / die Bundespräsidentin.', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welcher Stimmzettel wäre bei einer Bundestagswahl gültig?', NULL);
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (130, '/img/questions/130.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (130, 'http://localhost:8080/files/questions/130.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (130, '1', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (130, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (130, '3', FALSE);
@@ -878,7 +878,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (175, '4', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (175, '5', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (175, '6', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Wie waren die Besatzungszonen Deutschlands nach 1945 verteilt?', NULL);
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (176, '/img/questions/176.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (176, 'http://localhost:8080/files/questions/176.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (176, '1=Großbritannien, 2=Sowjetunion, 3=Frankreich, 4=USA', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (176, '1=Sowjetunion, 2=Großbritannien, 3=USA, 4=Frankreich', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (176, '1=Großbritannien, 2=Sowjetunion, 3=USA, 4=Frankreich', TRUE);
@@ -904,7 +904,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (180, 'Willy Brand
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (180, 'Konrad Adenauer.', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (180, 'Gerhard Schröder.', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Was wollte Willy Brandt mit seinem Kniefall 1970 im ehemaligen jüdischen Ghetto in Warschau ausdrücken?', NULL);
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (181, '/img/questions/181.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (181, 'http://localhost:8080/files/questions/181.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (181, 'Er hat sich den ehemaligen Alliierten unterworfen.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (181, 'Er bat Polen und die polnischen Juden um Vergebung.', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (181, 'Er zeigte seine Demut vor dem Warschauer Pakt.', FALSE);
@@ -935,7 +935,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (186, '17. Juni', 
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (186, '20. Juli', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (186, '9. November', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welcher deutsche Staat hatte eine schwarz-rot-goldene Flagge mit Hammer, Zirkel und Ährenkranz?', NULL);
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (187, '/img/questions/187.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (187, 'http://localhost:8080/files/questions/187.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (187, 'Preußen', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (187, 'Bundesrepublik Deutschland', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (187, 'DDR', TRUE);
@@ -1046,7 +1046,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (208, 'eine berüh
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (208, 'der Geheimdienst der DDR', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (208, 'ein deutscher Sportverein während des Zweiten Weltkrieges', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches war das Wappen der Deutschen Demokratischen Republik?', NULL);
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (209, '/img/questions/209.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (209, 'http://localhost:8080/files/questions/209.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (209, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (209, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (209, '3', FALSE);
@@ -1082,7 +1082,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (215, 'Helmut Kohl
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (215, 'Konrad Adenauer', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (215, 'Helmut Schmidt', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Symbol ist im Plenarsaal des Deutschen Bundestages zu sehen?', NULL);
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (216, '/img/questions/216.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (216, 'http://localhost:8080/files/questions/216.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (216, 'die Fahne der Stadt Berlin.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (216, 'der Bundesadler.', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (216, 'der Reichsadler.', FALSE);
@@ -1133,7 +1133,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (225, 'Norwegen', 
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (225, 'Spanien', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (225, 'Österreich', TRUE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welche ist die Flagge der Europäischen Union?', NULL);
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (226, '/img/questions/226.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (226, 'http://localhost:8080/files/questions/226.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (226, '2', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (226, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (226, '4', FALSE);
@@ -1179,7 +1179,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (234, 'Paris', FAL
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (234, 'Berlin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (234, 'Straßburg', TRUE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Der französische Staatspräsident François Mitterrand und der deutsche Bundeskanzler Helmut Kohl gedenken in Verdun gemeinsam der Toten beider Weltkriege. Welches Ziel der Europäischen Union wird bei diesem Treffen deutlich?', NULL);
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (235, '/img/questions/235.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (235, 'http://localhost:8080/files/questions/235.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (235, 'Freundschaft zwischen England und Deutschland', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (235, 'Reisefreiheit in alle Länder der EU', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (235, 'Frieden und Sicherheit in den Ländern der EU', TRUE);
@@ -1510,7 +1510,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (300, 'Spanien', F
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (300, 'Portugal', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (300, 'Türkei', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zum Bundesland Baden-Württemberg?', 'BADEN_WUERTTEMBERG');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (301, '/img/questions/301.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (301, 'http://localhost:8080/files/questions/301.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (301, '1', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (301, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (301, '3', FALSE);
@@ -1546,7 +1546,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (307, 'Stuttgart.'
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (307, 'Karlsruhe.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (307, 'Mannheim.', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Baden-Württemberg?', 'BADEN_WUERTTEMBERG');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (308, '/img/questions/308.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (308, 'http://localhost:8080/files/questions/308.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (308, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (308, '2', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (308, '3', FALSE);
@@ -1562,7 +1562,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (310, 'Justizminis
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (310, 'Innenminister / Innenministerin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (310, 'Außenminister / Außenministerin', TRUE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zum Freistaat Bayern?', 'BAYERN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (311, '/img/questions/311.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (311, 'http://localhost:8080/files/questions/311.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (311, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (311, '2', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (311, '3', FALSE);
@@ -1598,7 +1598,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (317, 'Regensburg.
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (317, 'Nürnberg.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (317, 'München.', TRUE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Bayern?', 'BAYERN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (318, '/img/questions/318.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (318, 'http://localhost:8080/files/questions/318.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (318, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (318, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (318, '3', FALSE);
@@ -1614,7 +1614,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (320, 'Außenminis
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (320, 'Finanzminister / Finanzministerin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (320, 'Innenminister / Innenministerin', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zum Bundesland Berlin?', 'BERLIN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (321, '/img/questions/321.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (321, 'http://localhost:8080/files/questions/321.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (321, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (321, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (321, '3', FALSE);
@@ -1650,7 +1650,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (327, 'Saarland', 
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (327, 'Brandenburg', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (327, 'Hessen', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Berlin?', 'BERLIN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (328, '/img/questions/328.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (328, 'http://localhost:8080/files/questions/328.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (328, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (328, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (328, '3', FALSE);
@@ -1666,7 +1666,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (330, 'Innensenato
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (330, 'Senator / Senatorin für Außenbeziehungen', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (330, 'Justizsenator / Justizsenatorin', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zum Bundesland Brandenburg?', 'BRANDENBURG');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (331, '/img/questions/331.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (331, 'http://localhost:8080/files/questions/331.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (331, '1', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (331, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (331, '3', FALSE);
@@ -1702,7 +1702,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (337, 'Cottbus.', 
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (337, 'Brandenburg.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (337, 'Frankfurt/Oder.', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Brandenburg?', 'BRANDENBURG');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (338, '/img/questions/338.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (338, 'http://localhost:8080/files/questions/338.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (338, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (338, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (338, '3', FALSE);
@@ -1718,7 +1718,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (340, 'Außenminis
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (340, 'Finanzminister / Finanzministerin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (340, 'Innenminister / Innenministerin', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zur Freien Hansestadt Bremen?', 'BREMEN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (341, '/img/questions/341.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (341, 'http://localhost:8080/files/questions/341.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (341, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (341, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (341, '3', TRUE);
@@ -1754,7 +1754,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (347, 'München', 
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (347, 'Frankfurt', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (347, 'Erfurt', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Bremen?', 'BREMEN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (348, '/img/questions/348.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (348, 'http://localhost:8080/files/questions/348.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (348, '1', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (348, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (348, '3', FALSE);
@@ -1770,7 +1770,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (350, 'Finanzsenat
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (350, 'Justizsenator / Justizsenatorin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (350, 'Innensenator / Innensenatorin', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zur Freien und Hansestadt Hamburg?', 'HAMBURG');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (351, '/img/questions/351.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (351, 'http://localhost:8080/files/questions/351.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (351, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (351, '2', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (351, '3', FALSE);
@@ -1806,7 +1806,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (357, 'Sachsen', F
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (357, 'Bayern', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (357, 'Thüringen', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Hamburg?', 'HAMBURG');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (358, '/img/questions/358.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (358, 'http://localhost:8080/files/questions/358.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (358, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (358, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (358, '3', TRUE);
@@ -1822,7 +1822,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (360, 'Senator / S
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (360, 'Finanzsenator / Finanzsenatorin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (360, 'Innensenator / Innensenatorin', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zum Bundesland Hessen?', 'HESSEN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (361, '/img/questions/361.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (361, 'http://localhost:8080/files/questions/361.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (361, '1', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (361, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (361, '3', FALSE);
@@ -1858,7 +1858,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (367, 'Darmstadt.'
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (367, 'Frankfurt.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (367, 'Wiesbaden.', TRUE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Hessen?', 'HESSEN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (368, '/img/questions/368.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (368, 'http://localhost:8080/files/questions/368.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (368, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (368, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (368, '3', TRUE);
@@ -1874,7 +1874,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (370, 'Außenminis
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (370, 'Finanzminister / Finanzministerin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (370, 'Innenminister / Innenministerin', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zum Bundesland Mecklenburg-Vorpommern?', 'MECKLENBURG_VORPOMMERN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (371, '/img/questions/371.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (371, 'http://localhost:8080/files/questions/371.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (371, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (371, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (371, '3', TRUE);
@@ -1910,7 +1910,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (377, 'Schwerin.',
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (377, 'Rostock.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (377, 'Wismar.', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Mecklenburg-Vorpommern?', 'MECKLENBURG_VORPOMMERN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (378, '/img/questions/378.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (378, 'http://localhost:8080/files/questions/378.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (378, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (378, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (378, '3', TRUE);
@@ -1926,7 +1926,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (380, 'Außenminis
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (380, 'Finanzminister / Finanzministerin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (380, 'Innenminister / Innenministerin', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zum Bundesland Niedersachsen?', 'NIEDERSACHSEN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (381, '/img/questions/381.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (381, 'http://localhost:8080/files/questions/381.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (381, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (381, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (381, '3', TRUE);
@@ -1962,7 +1962,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (387, 'Braunschwei
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (387, 'Wolfsburg.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (387, 'Osnabrück.', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Niedersachsen?', 'NIEDERSACHSEN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (388, '/img/questions/388.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (388, 'http://localhost:8080/files/questions/388.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (388, '1', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (388, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (388, '3', FALSE);
@@ -1978,7 +1978,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (390, 'Außenminis
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (390, 'Finanzminister / Finanzministerin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (390, 'Innenminister / Innenministerin', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zum Bundesland Nordrhein-Westfalen?', 'NORDRHEIN_WESTFALEN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (391, '/img/questions/391.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (391, 'http://localhost:8080/files/questions/391.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (391, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (391, '2', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (391, '3', FALSE);
@@ -2014,7 +2014,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (397, 'Bonn.', FAL
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (397, 'Düsseldorf.', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (397, 'Dortmund.', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Nordrhein-Westfalen?', 'NORDRHEIN_WESTFALEN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (398, '/img/questions/398.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (398, 'http://localhost:8080/files/questions/398.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (398, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (398, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (398, '3', TRUE);
@@ -2030,7 +2030,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (400, 'Außenminis
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (400, 'Finanzminister / Finanzministerin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (400, 'Innenminister / Innenministerin', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zum Bundesland Rheinland-Pfalz?', 'RHEINLAND_PFALZ');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (401, '/img/questions/401.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (401, 'http://localhost:8080/files/questions/401.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (401, '1', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (401, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (401, '3', FALSE);
@@ -2066,7 +2066,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (407, 'Kaiserslaut
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (407, 'Ludwigshafen.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (407, 'Koblenz.', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Rheinland-Pfalz?', 'RHEINLAND_PFALZ');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (408, '/img/questions/408.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (408, 'http://localhost:8080/files/questions/408.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (408, '1', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (408, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (408, '3', FALSE);
@@ -2082,7 +2082,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (410, 'Außenminis
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (410, 'Finanzminister / Finanzministerin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (410, 'Innenminister / Innenministerin', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zum Bundesland Saarland?', 'SAARLAND');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (411, '/img/questions/411.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (411, 'http://localhost:8080/files/questions/411.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (411, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (411, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (411, '3', FALSE);
@@ -2118,7 +2118,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (417, 'Homburg.', 
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (417, 'Saarbrücken.', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (417, 'Völklingen.', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist das Saarland?', 'SAARLAND');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (418, '/img/questions/418.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (418, 'http://localhost:8080/files/questions/418.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (418, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (418, '2', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (418, '3', FALSE);
@@ -2134,7 +2134,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (420, 'Außenminis
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (420, 'Finanzminister / Finanzministerin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (420, 'Innenminister / Innenministerin', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zum Freistaat Sachsen?', 'SACHSEN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (421, '/img/questions/421.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (421, 'http://localhost:8080/files/questions/421.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (421, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (421, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (421, '3', FALSE);
@@ -2170,7 +2170,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (427, 'Dresden.', 
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (427, 'Chemnitz.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (427, 'Zwickau.', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Sachsen?', 'SACHSEN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (428, '/img/questions/428.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (428, 'http://localhost:8080/files/questions/428.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (428, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (428, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (428, '3', FALSE);
@@ -2186,7 +2186,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (430, 'Außenminis
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (430, 'Finanzminister / Finanzministerin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (430, 'Innenminister / Innenministerin', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zum Bundesland Sachsen-Anhalt?', 'SACHSEN_ANHALT');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (431, '/img/questions/431.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (431, 'http://localhost:8080/files/questions/431.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (431, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (431, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (431, '3', FALSE);
@@ -2222,7 +2222,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (437, 'Dessau.', F
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (437, 'Magdeburg.', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (437, 'Wittenberg.', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Sachsen-Anhalt?', 'SACHSEN_ANHALT');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (438, '/img/questions/438.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (438, 'http://localhost:8080/files/questions/438.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (438, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (438, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (438, '3', TRUE);
@@ -2238,7 +2238,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (440, 'Außenminis
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (440, 'Finanzminister / Finanzministerin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (440, 'Innenminister / Innenministerin', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zum Bundesland Schleswig-Holstein?', 'SCHLESWIG_HOLSTEIN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (441, '/img/questions/441.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (441, 'http://localhost:8080/files/questions/441.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (441, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (441, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (441, '3', TRUE);
@@ -2274,7 +2274,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (447, 'Flensburg.'
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (447, 'Lübeck.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (447, 'Kiel.', TRUE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Schleswig-Holstein?', 'SCHLESWIG_HOLSTEIN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (448, '/img/questions/448.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (448, 'http://localhost:8080/files/questions/448.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (448, '1', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (448, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (448, '3', FALSE);
@@ -2290,7 +2290,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (450, 'Außenminis
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (450, 'Finanzminister / Finanzministerin', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (450, 'Innenminister / Innenministerin', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Wappen gehört zum Freistaat Thüringen?', 'THUERINGEN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (451, '/img/questions/451.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (451, 'http://localhost:8080/files/questions/451.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (451, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (451, '2', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (451, '3', FALSE);
@@ -2326,7 +2326,7 @@ INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (457, 'Erfurt.', T
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (457, 'Gera.', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (457, 'Jena.', FALSE);
 INSERT INTO QUESTION (question_type, question_text, state) VALUES ('Image_Question', 'Welches Bundesland ist Thüringen?', 'THUERINGEN');
-INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (458, '/img/questions/458.png');
+INSERT INTO QUESTION_WITH_IMAGE (id, image_path) VALUES (458, 'http://localhost:8080/files/questions/458.png');
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (458, '1', FALSE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (458, '2', TRUE);
 INSERT INTO ANSWER (question_id, answer_text, correct) VALUES (458, '3', FALSE);
