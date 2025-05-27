@@ -6,7 +6,7 @@ import Loading from "@/app/_components/Loading/Loading"
 
 
 export default function DashboardQuizResults(){
-    const { jwtToken} = useAuth()
+    const { jwtToken, logout} = useAuth()
     const QUIZ_RESULTS_URL = process.env.NEXT_PUBLIC_API_BASE_URL+'/quiz-results'
     
 
@@ -26,6 +26,10 @@ export default function DashboardQuizResults(){
             });
 
             if (!response.ok) {
+                // Handle expired sessions
+                if(response.status === 401){
+                    logout();
+                }
                 throw new Error("Results could not retrieved...");
             }
 

@@ -27,10 +27,13 @@ const AuthProvider = ({children}) => {
 
             const data = await response.json();
             setUserProfile(data);
-            setLoading(false);
+            //setLoading(false);
         } catch (err) {
             console.error(err.message);
             logout();
+        }
+        finally {
+            setLoading(false);
         }
     };
 

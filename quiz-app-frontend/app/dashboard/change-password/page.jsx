@@ -7,7 +7,7 @@ import SuccessAlert from "@/app/_components/Alert/SuccessAlert"
 
 
 export default function ProfilePage(){
-    const { jwtToken } = useAuth()
+    const { jwtToken, logout } = useAuth()
     const USER_PASSWORD_UPDATE_URL = process.env.NEXT_PUBLIC_API_BASE_URL+'/users/me/password'
 
     const [oldPassword, setOldPassword] = useState('');
@@ -18,8 +18,6 @@ export default function ProfilePage(){
     const initialErrorTemplate = { oldPassword: "", newPassword: "", confirmPassword: "", general: "" }
     const [error, setError] = useState(initialErrorTemplate)
     const [success, setSuccess] = useState('')
-
-
 
     // Update Handler
     const handleChangePassword = async (e) => {
@@ -59,6 +57,12 @@ export default function ProfilePage(){
             });
 
             if (!res.ok) {
+                
+                // Handle expired sessions
+                if(res.status === 401){
+                    logout();
+                }
+
                 const errorData = await res.json();
                 throw new Error(errorData.message);
             }

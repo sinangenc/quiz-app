@@ -6,7 +6,7 @@ import ErrorAlert from "@/app/_components/Alert/ErrorAlert"
 import SuccessAlert from "@/app/_components/Alert/SuccessAlert"
 
 export default function UpdateProfilePage(){
-    const { jwtToken, userProfile, setUserProfile} = useAuth()
+    const { jwtToken, userProfile, setUserProfile, logout} = useAuth()
     const USER_PROFILE_UPDATE_URL = process.env.NEXT_PUBLIC_API_BASE_URL+'/users/me'
 
 
@@ -41,7 +41,14 @@ export default function UpdateProfilePage(){
                 body: JSON.stringify({ name }),
             });
 
-            if (!res.ok) throw new Error('Failed to update profile!');
+            if (!res.ok) {
+                // Handle expired sessions
+                if(res.status === 401){
+                    logout();
+                }
+                
+                throw new Error('Failed to update profile!');
+            }
 
             setUserProfile({...userProfile, name: name})
             setSuccess('Profile updated successfully!');
