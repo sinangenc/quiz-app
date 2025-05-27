@@ -13,8 +13,6 @@ import com.gencsinan.quizapp.quizresult.QuizResult;
 import com.gencsinan.quizapp.quizresult.QuizResultService;
 import com.gencsinan.quizapp.quizresult.QuizType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
@@ -116,6 +114,12 @@ public class QuizService {
         QuestionPractice questionPractice = new QuestionPractice();
         questionPractice.setQuestionId(randomQuestion.getId());
         questionPractice.setQuestionText(randomQuestion.getQuestionText());
+
+        String imagePath = null;
+        if(randomQuestion instanceof QuestionWithImage qi){
+            imagePath = qi.getImagePath();
+        }
+        questionPractice.setImagePath(imagePath);
 
         List<AnswerPractice> answersPractice = randomQuestion.getAnswers().stream()
                 .map(answer -> new AnswerPractice(

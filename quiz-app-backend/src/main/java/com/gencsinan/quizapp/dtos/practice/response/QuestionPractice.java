@@ -7,6 +7,7 @@ import java.util.List;
 public class QuestionPractice {
     private Long questionId;
     private String questionText;
+    private String imagePath;
     private List<AnswerPractice> answers;
     private Long correctAnswerId;
 
@@ -40,5 +41,13 @@ public class QuestionPractice {
 
     public void setCorrectAnswerId(Long correctAnswerId) {
         this.correctAnswerId = correctAnswerId;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
