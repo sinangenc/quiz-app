@@ -14,5 +14,6 @@ RUN mvn package -DskipTests && \
 FROM eclipse-temurin:21-jre-jammy AS production
 WORKDIR /app
 COPY --from=build /app/app.jar .
+COPY ./uploaded_files ./uploaded_files
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
