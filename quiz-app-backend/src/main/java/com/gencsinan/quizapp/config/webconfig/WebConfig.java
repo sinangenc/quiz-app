@@ -1,4 +1,4 @@
-package com.gencsinan.quizapp.config.cors;
+package com.gencsinan.quizapp.config.webconfig;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -19,7 +19,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/images/**")
+        registry.addResourceHandler("/files/**")
                 .addResourceLocations("file:uploaded_files/");
     }
 }
