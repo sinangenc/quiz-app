@@ -88,7 +88,7 @@ export default function Practice(){
                         <Link
                             href="/"
                             className="inline-block px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 transition">
-                            Go to Home
+                            Go to Homepage
                         </Link>
                     </div>
                 </div>
@@ -123,13 +123,23 @@ export default function Practice(){
         </div>
 
         <div id="questionContainer" className="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg border border-gray-200">
+            {/* Question image */}
+            {currentQuestion.imagePath && (
+                <div className="mb-4 text-center">
+                    <img
+                        src={currentQuestion.imagePath}
+                        alt="Question visual"
+                        className="mx-auto max-h-64 object-contain rounded"
+                    />
+                </div>
+            )}
+
+            {/* Question text */}
             <div className="text-2xl font-semibold text-left mb-6">
-            <p>{currentQuestion.questionText}</p>
-            {
-            //Question {currentQuestion.id}:
-            }
+                <p>{currentQuestion.questionText}</p>
             </div>
 
+            {/* Question options */}
             <div className="space-y-4">
             {
                 currentQuestion.answers.map(answer=>{
