@@ -121,7 +121,7 @@ export default function Test(){
             <div className="container flex flex-col items-center px-4 py-12 mx-auto text-center">
                 <div className="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg border border-gray-200">
                     <div className="text-left mb-6">
-                        <h4 className="text-2xl font-semibold text-center">Practice Session Finished!</h4>
+                        <h4 className="text-2xl font-semibold text-center">Test Finished!</h4>
                         <p className="mt-4 text-center text-gray-700">
                             You have completed the practice session. Your results are shown below:
                         </p>
