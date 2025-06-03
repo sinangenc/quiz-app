@@ -26,7 +26,7 @@ public class UserService {
         if (user == null) {
             throw new UserNotFoundException("User not found");
         }
-        return new UserInfoResponse(user.getId(), user.getName(), user.getEmail());
+        return new UserInfoResponse(user.getId(), user.getName(), user.getEmail(), user.getRole());
     }
 
     public void deleteUserByEmail(String email) {
