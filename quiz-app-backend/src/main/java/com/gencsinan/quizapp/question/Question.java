@@ -63,11 +63,11 @@ public class Question {
     }
 
     public List<Answer> getAnswers() {
-        return List.copyOf(this.answers);
+        return answers;
     }
 
     public void setAnswers(List<Answer> answers) {
-        this.answers = (answers == null) ? new ArrayList<>() : List.copyOf(answers);
+        this.answers = (answers == null) ? new ArrayList<>() : new ArrayList<>(answers);
     }
 
     public String getImagePath() {

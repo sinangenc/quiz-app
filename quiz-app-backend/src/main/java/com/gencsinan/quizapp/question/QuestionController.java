@@ -1,14 +1,16 @@
 package com.gencsinan.quizapp.question;
 
+import com.gencsinan.quizapp.dtos.question.request.QuestionCreateUpdateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -23,9 +25,10 @@ public class QuestionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Question>> getAllQuestions(Pageable pageable) {
+    public ResponseEntity<Page<Question>> getAllQuestions(Pageable pageable) {
         Page<Question> questions = questionService.getAllQuestions(pageable);
-        return ResponseEntity.ok(questions.getContent());
+        //return ResponseEntity.ok(questions.getContent());
+        return ResponseEntity.ok(questions);
     }
 
     @GetMapping("/{questionId}")
@@ -36,9 +39,12 @@ public class QuestionController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public ResponseEntity<Void> createNewQuestion(@RequestBody Question question, UriComponentsBuilder ucb) {
-        Question savedQuestion = questionService.saveQuestion(question);
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Void> createNewQuestion(
+            @RequestPart("question") QuestionCreateUpdateDTO questionDTO,
+            @RequestPart(value = "image", required = false) MultipartFile image,
+            UriComponentsBuilder ucb) {
+        Question savedQuestion = questionService.createNewQuestion(questionDTO, image);
         URI locationOfNewQuestion = ucb
                 .path("/admin/questions/{id}")
                 .buildAndExpand(savedQuestion.getId())
@@ -47,14 +53,18 @@ public class QuestionController {
         return ResponseEntity.created(locationOfNewQuestion).build();
     }
 
-    @PutMapping("/{questionId}")
-    public ResponseEntity<Void> updateQuestion(@PathVariable Long questionId, @RequestBody Question updatedQuestion) {
-        boolean updated = questionService.updateQuestion(questionId, updatedQuestion);
+    @PutMapping(value = "/{questionId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Void> updateQuestion(
+            @PathVariable Long questionId,
+            @RequestPart("question") QuestionCreateUpdateDTO updatedQuestionDTO,
+            @RequestPart(value = "image", required = false) MultipartFile image,
+            @RequestParam(value = "removeImage", required = false, defaultValue = "false") boolean removeImage
+    ) {
+        boolean updated = questionService.updateQuestion(questionId, updatedQuestionDTO, image, removeImage);
 
         if (updated) {
             return ResponseEntity.noContent().build();
         }
-
         return ResponseEntity.notFound().build();
     }
 
