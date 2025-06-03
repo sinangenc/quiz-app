@@ -1,5 +1,7 @@
 package com.gencsinan.quizapp.question;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.gencsinan.quizapp.answer.Answer;
 import com.gencsinan.quizapp.state.State;
 import jakarta.persistence.*;
@@ -7,9 +9,15 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+/*
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", defaultImpl = Question.class)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = QuestionWithImage.class, name = "image")
+})
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "question_type", discriminatorType = DiscriminatorType.STRING)
+*/
+@Entity
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +33,9 @@ public class Question {
     @JoinColumn(name = "question_id", nullable = false)
     @Column(nullable = false)
     private List<Answer> answers;
+
+    @Column(nullable = true)
+    private String imagePath;
 
 
     public Long getId() {
@@ -59,6 +70,14 @@ public class Question {
         this.answers = (answers == null) ? new ArrayList<>() : List.copyOf(answers);
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     @Override
     public String toString() {
         return "Question{" +
@@ -66,6 +85,7 @@ public class Question {
                 ", questionText='" + questionText + '\'' +
                 ", state=" + state +
                 ", answers=" + answers +
+                ", imagePath='" + imagePath + '\'' +
                 '}';
     }
 }

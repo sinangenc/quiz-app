@@ -114,12 +114,8 @@ public class QuizService {
         QuestionPractice questionPractice = new QuestionPractice();
         questionPractice.setQuestionId(randomQuestion.getId());
         questionPractice.setQuestionText(randomQuestion.getQuestionText());
+        questionPractice.setImagePath(randomQuestion.getImagePath());
 
-        String imagePath = null;
-        if(randomQuestion instanceof QuestionWithImage qi){
-            imagePath = qi.getImagePath();
-        }
-        questionPractice.setImagePath(imagePath);
 
         List<AnswerPractice> answersPractice = randomQuestion.getAnswers().stream()
                 .map(answer -> new AnswerPractice(
