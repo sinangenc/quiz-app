@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REGISTRY: registry.digitalocean.com/quiz-app
+      REPOSITORY: quiz-app
 
     steps:
       - name: Checkout code
@@ -22,16 +23,18 @@ jobs:
       - name: Log in to DigitalOcean Container Registry
         run: echo "${{ secrets.DO_ACCESS_TOKEN }}" | docker login $REGISTRY -u doctl --password-stdin
       
-      - name: Build & push backend image
+      - name: Build and tag frontend image
         run: |
-          docker build -t $REGISTRY/backend:${SHORT_SHA} ./quiz-app-backend
-          docker push $REGISTRY/backend:${SHORT_SHA}
-          docker tag $REGISTRY/backend:${SHORT_SHA} $REGISTRY/backend:latest
-          docker push $REGISTRY/backend:latest
+          docker build -t $REGISTRY/$REPOSITORY:frontend ./quiz-app-frontend
 
-      - name: Build & push frontend image
+      - name: Build and tag backend image
         run: |
-          docker build -t $REGISTRY/frontend:${SHORT_SHA} ./quiz-app-frontend
-          docker push $REGISTRY/frontend:${SHORT_SHA}
-          docker tag $REGISTRY/frontend:${SHORT_SHA} $REGISTRY/frontend:latest
-          docker push $REGISTRY/frontend:latest
+          docker build -t $REGISTRY/$REPOSITORY:backend ./quiz-app-backend
+
+      - name: Push frontend image
+        run: |
+          docker push $REGISTRY/$REPOSITORY:frontend
+
+      - name: Push backend image
+        run: |
+          docker push $REGISTRY/$REPOSITORY:backend
