@@ -1,0 +1,37 @@
+name: Build and Push Docker Images to DOCR
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    env:
+      REGISTRY: registry.digitalocean.com/quiz-app
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set commit SHA
+        id: vars
+        run: echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: Log in to DigitalOcean Container Registry
+        run: echo "${{ secrets.DO_ACCESS_TOKEN }}" | docker login $REGISTRY -u doctl --password-stdin
+      
+      - name: Build & push backend image
+        run: |
+          docker build -t $REGISTRY/backend:${SHORT_SHA} ./quiz-app-backend
+          docker push $REGISTRY/backend:${SHORT_SHA}
+          docker tag $REGISTRY/backend:${SHORT_SHA} $REGISTRY/backend:latest
+          docker push $REGISTRY/backend:latest
+
+      - name: Build & push frontend image
+        run: |
+          docker build -t $REGISTRY/frontend:${SHORT_SHA} ./quiz-app-frontend
+          docker push $REGISTRY/frontend:${SHORT_SHA}
+          docker tag $REGISTRY/frontend:${SHORT_SHA} $REGISTRY/frontend:latest
+          docker push $REGISTRY/frontend:latest
