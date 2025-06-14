@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REGISTRY: registry.digitalocean.com/quiz-app
-      REPOSITORY: quiz-app
+      FRONTEND_REPOSITORY: quiz-app-frontend
+      BACKEND_REPOSITORY: quiz-app-backend
       BACKEND_API_BASE_URL: https://quiz-app-backend-6zy4y.ondigitalocean.app
 
     steps:
@@ -28,7 +29,7 @@ jobs:
         run: |
           docker build \
             --build-arg NEXT_PUBLIC_API_BASE_URL=$BACKEND_API_BASE_URL \
-            -t $REGISTRY/$REPOSITORY:frontend ./quiz-app-frontend
+            -t $REGISTRY/$FRONTEND_REPOSITORY:latest ./quiz-app-frontend
 
 #      - name: Build and tag frontend image
 #        run: |
@@ -36,12 +37,12 @@ jobs:
 
       - name: Build and tag backend image
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:backend ./quiz-app-backend
+          docker build -t $REGISTRY/$BACKEND_REPOSITORY:latest ./quiz-app-backend
 
       - name: Push frontend image
         run: |
-          docker push $REGISTRY/$REPOSITORY:frontend
+          docker push $REGISTRY/$FRONTEND_REPOSITORY:latest
 
       - name: Push backend image
         run: |
-          docker push $REGISTRY/$REPOSITORY:backend
+          docker push $REGISTRY/$BACKEND_REPOSITORY:latest
