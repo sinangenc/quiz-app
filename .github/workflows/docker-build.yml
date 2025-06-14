@@ -11,6 +11,7 @@ jobs:
     env:
       REGISTRY: registry.digitalocean.com/quiz-app
       REPOSITORY: quiz-app
+      BACKEND_API_BASE_URL: https://quiz-app-backend-6zy4y.ondigitalocean.app
 
     steps:
       - name: Checkout code
@@ -25,7 +26,13 @@ jobs:
       
       - name: Build and tag frontend image
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:frontend ./quiz-app-frontend
+          docker build \
+            --build-arg NEXT_PUBLIC_API_BASE_URL=$BACKEND_API_BASE_URL \
+            -t $REGISTRY/$REPOSITORY:frontend ./quiz-app-frontend
+
+#      - name: Build and tag frontend image
+#        run: |
+#          docker build -t $REGISTRY/$REPOSITORY:frontend ./quiz-app-frontend
 
       - name: Build and tag backend image
         run: |
