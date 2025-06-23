@@ -24,7 +24,7 @@ The project is composed of two main parts:
 
 You can access the live deployment of the application here:
 
-- **Frontend:** [https://quiz-app-frontend-6zy4y.ondigitalocean.app](https://quiz-app-frontend-6zy4y.ondigitalocean.app)
+- **Frontend:** [https://quiz-app-wlk4p.ondigitalocean.app](https://quiz-app-wlk4p.ondigitalocean.app)
 - **Backend API:** [https://quiz-app-backend-6zy4y.ondigitalocean.app](https://quiz-app-backend-6zy4y.ondigitalocean.app)
 
 You can use the following test users to explore the app:
